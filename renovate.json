@@ -1,6 +1,14 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
-  "rangeStrategy": "bump",
-  "automerge": true
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch"],
+      "groupName": "All patch updates",
+      "automerge": true
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "groupName": "Dev dependencies"
+    }
+  ]
 }
