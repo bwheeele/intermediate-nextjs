@@ -1,0 +1,64 @@
+name: Renovate PR Agent
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  analyze:
+    if: github.actor == 'renovate[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install agent dependencies
+        working-directory: .github/agent
+        run: npm install
+
+      - name: Run npm audit
+        run: npm audit --json > audit-output.json || true
+
+      - name: Run Renovate Agent
+        working-directory: .github/agent
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          REPO: ${{ github.repository }}
+          LMNR_API_KEY: ${{ secrets.LMNR_API_KEY }}
+        run: npx tsx renovate-runner.ts
+
+---
+## Final structure check
+
+your-personal-repo/
+.github/
+workflows/
+renovate-agent.yml
+agent/
+renovate-runner.ts      ← new entrypoint you create
+package.json            ← new minimal package.json
+types.ts                ← copied from agents-v2 root
+src/
+agent/
+run.ts              ← copied
+executeTool.ts      ← copied
+tools/
+index.ts
+file.ts
+webSearch.ts
+shell.ts
+system/
+prompt.ts
+filterMessages.ts
+context/
+index.ts

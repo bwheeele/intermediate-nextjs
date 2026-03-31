@@ -1,0 +1,16 @@
+{
+  "name": "renovate-agent",
+  "type": "module",
+  "dependencies": {
+    "@ai-sdk/openai": "^2.0.72",
+    "@lmnr-ai/lmnr": "^0.7.9",
+    "ai": "^5.0.102",
+    "zod": "^4.1.13",
+    "shelljs": "^0.10.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "@types/node": "^24.0.0",
+    "@types/shelljs": "^0.8.17"
+  }
+}
