@@ -74,7 +74,7 @@ export async function runAgent(
 
   while (true) {
     const result = streamText({
-      model: openai(MODEL_NAME),
+      model: openai.responses(MODEL_NAME),
       messages,
       tools,
       experimental_telemetry: {

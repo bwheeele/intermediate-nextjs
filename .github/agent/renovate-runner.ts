@@ -43,12 +43,8 @@ Low / Medium / High — with one sentence reason
 ---
 *Posted by Renovate Agent 🤖*
 
-4. Use runCommand to post that comment to GitHub with this curl command (fill in BODY with your markdown, properly JSON-escaped):
-curl -s -X POST \
-  -H "Authorization: Bearer ${githubToken}" \
-  -H "Content-Type: application/json" \
-  -d '{"body": "BODY"}' \
-  https://api.github.com/repos/${repo}/issues/${prNumber}/comments
+4. Use runCommand to post that comment to GitHub using this exact single-line curl (replace BODY with your markdown JSON-escaped: newlines become \n, double quotes become \"  — no backslash line continuations):
+curl -s -X POST -H "Authorization: Bearer ${githubToken}" -H "Content-Type: application/json" -d '{"body": "BODY"}' https://api.github.com/repos/${repo}/issues/${prNumber}/comments
 `
 
 const callbacks = {
