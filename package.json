@@ -20,7 +20,7 @@
     "drizzle-orm": "^0.30.10",
     "framer-motion": "^11.1.9",
     "jsonwebtoken": "^9.0.2",
-    "lucide-react": "^0.378.0",
+    "lucide-react": "^0.577.0",
     "next": "14.2.35",
     "nextjs-better-unstable-cache": "^1.1.0",
     "react": "^18",
